@@ -28,7 +28,7 @@ $(function() {
       // This function will run when the response returned is successful.
       // The body of the response will be passed in as the `response`.
       success: function(response) {
-        alert('hurray');
+        debugger;
       },
 
       // This function will run when the response returned is an error.
