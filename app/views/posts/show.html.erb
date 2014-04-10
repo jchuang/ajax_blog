@@ -1,3 +1,20 @@
 <h1><%= @post.title %></h1>
 
 <%= simple_format @post.body %>
+
+<h3>Comments</h3>
+
+<%= simple_form_for [@post, @comment] do |f| %>
+  <%= f.input :author %>
+  <%= f.input :body %>
+  <%= f.button :submit %>
+<% end %>
+
+<div class="comment-feed">
+  <% @post.comments.each do |post| %>
+    <div class="comment">
+      <h4><%= post.author %></h4>
+      <p><%= post.body %></p>
+    </div>
+  <% end %>
+</div>
