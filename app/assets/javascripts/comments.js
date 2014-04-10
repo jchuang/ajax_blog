@@ -1,6 +1,11 @@
 $(function() {
   $('#new_comment').on('submit', function(event) {
     event.preventDefault();
-    alert('no more refreshes!')
+
+    var comment = 'Hello World!'
+
+    // Add the new comment to the comment feed
+    var $commentFeed = $('.comment-feed');
+    $commentFeed.append(comment);
   });
 });
