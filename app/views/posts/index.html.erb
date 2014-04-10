@@ -2,8 +2,13 @@
 
 <%= link_to "Add a Post", new_post_path %>
 
-<ul>
-  <% @posts.each do |post| %>
-    <li><%= link_to post.title, post_path(post) %></li>
-  <% end %>
-</ul>
+<% if @posts.any? %>
+  <ul>
+    <% @posts.each do |post| %>
+      <li><%= link_to post.title, post_path(post) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <h3>You haven't run the seed task yet!</h3>
+  <h1>You should seed some posts into the database with <code>rake db:seed</code></h1>
+<% end %>
