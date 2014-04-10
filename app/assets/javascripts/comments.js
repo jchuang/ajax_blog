@@ -2,12 +2,6 @@ $(function() {
   $('#new_comment').on('submit', function(event) {
     event.preventDefault();
 
-    // Comment attributes
-    var comment = {
-      author: 'Aunty Entity',
-      body: 'Welcome, to another edition of Thunderdome!'
-    };
-
     // Get the <form> that was submitted
     var $form = $(event.currentTarget);
 
@@ -28,7 +22,17 @@ $(function() {
       // This function will run when the response returned is successful.
       // The body of the response will be passed in as the `response`.
       success: function(response) {
-        debugger;
+        // Create the HTML/DOM element for the new comment
+        var $commentAuthor = $('<h4>').text(response.author);
+        var $commentBody = $('<p>').text(response.body);
+        var $comment = $('<div>')
+          .addClass('comment')
+          .append($commentAuthor)
+          .append($commentBody);
+
+        // Add the new comment to the comment feed
+        var $commentFeed = $('.comment-feed');
+        $commentFeed.append($comment);
       },
 
       // This function will run when the response returned is an error.
@@ -36,17 +40,5 @@ $(function() {
         alert('Something was wrong with your comment. Try again.');
       }
     });
-
-    // Create the HTML/DOM element for the new comment
-    var $commentAuthor = $('<h4>').text(comment.author);
-    var $commentBody = $('<p>').text(comment.body);
-    var $comment = $('<div>')
-      .addClass('comment')
-      .append($commentAuthor)
-      .append($commentBody);
-
-    // Add the new comment to the comment feed
-    var $commentFeed = $('.comment-feed');
-    $commentFeed.append($comment);
   });
 });
